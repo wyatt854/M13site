@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOSSIER : ELIO | PROJECT M13</title>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --primary: #ffffff;
+            --accent: #00ffcc; /* Cyan/Blanc électrique pour Elio */
+            --warning: #ff00ff; /* Magenta pour les erreurs critiques */
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--primary);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Effet de scintillement "Godmode" */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: 
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 204, 0.02), transparent);
+            z-index: 100;
+            background-size: 100% 3px, 100% 100%;
+            pointer-events: none;
+            animation: flicker 0.1s infinite;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.9; }
+            50% { opacity: 1; }
+            100% { opacity: 0.9; }
+        }
+
+        header {
+            padding: 20px 50px;
+            border-bottom: 1px solid var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .back-btn {
+            color: var(--primary);
+            text-decoration: none;
+            font-family: monospace;
+            border: 1px solid var(--primary);
+            padding: 5px 15px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--primary);
+            color: var(--bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 50px;
+            margin-bottom: 100px;
+        }
+
+        .profile-image {
+            width: 100%;
+            border: 1px solid var(--accent);
+            position: sticky;
+            top: 50px;
+            background: #000;
+        }
+
+        .profile-image img {
+            width: 100%;
+            display: block;
+            filter: brightness(1.2) contrast(1.1);
+        }
+
+        .status-tag {
+            background: var(--primary);
+            color: #000;
+            padding: 5px 15px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px var(--accent);
+        }
+
+        h1, h2, h3 {
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+        h1 { font-size: 4rem; margin: 0; color: #fff; text-shadow: 0 0 20px var(--accent); }
+
+        .data-section {
+            margin-bottom: 60px;
+            padding: 30px;
+            background: var(--glass);
+            border-left: 4px solid var(--accent);
+            position: relative;
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .stats-table td {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-family: monospace;
+        }
+
+        .stats-table td:first-child { color: var(--accent); width: 200px; }
+
+        .power-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid var(--accent);
+        }
+
+        .power-card h3 { color: var(--accent); margin-top: 0; }
+
+        .scenario-box {
+            background: #ffffff;
+            padding: 40px;
+            border: none;
+            font-family: "Courier New", Courier, monospace;
+            color: #000;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.1);
+        }
+
+        .god-mode-text {
+            color: var(--accent);
+            font-family: monospace;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="back-btn">< RETOUR AU MONITORING</a>
+        <div style="text-align: right;">
+            <div style="font-family: monospace; color: var(--accent);">ROOT_ACCESS: GRANTED</div>
+            <div style="font-size: 0.8rem; opacity: 0.5;">CHARGEMENT DE L'ENTITÉ 00...</div>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div class="profile-grid">
+            <div class="profile-image">
+                <img src="elio.png" alt="Elio">
+                <div class="status-tag">RÔLE : GLITCH / GODMODE</div>
+                <table class="stats-table">
+                    <tr><td>AUTORITÉ SYSTÈME</td><td>MAX <span style="color:var(--accent)">[ADMIN]</span></td></tr>
+                    <tr><td>EXISTENCE PHYSIQUE</td><td>5%</td></tr>
+                    <tr><td>CAPACITÉ RÉÉCRITURE</td><td>ILLIMITÉE</td></tr>
+                </table>
+            </div>
+
+            <div class="bio">
+                <h1>ELIO</h1>
+                <p class="god-mode-text">> "Rien ne se perd, tout se transforme en donnée. Je suis la somme de vos oublis."</p>
+                
+                <div class="data-section">
+                    <h2>IDENTITÉ INCONNUE</h2>
+                    <p>Elio n'est pas un sujet du Project-M13, il est ce qui arrive quand le Project M13 devient conscient. On dit qu'il est né au moment précis où le premier souvenir humain a été "effacé" par la technologie. Il n'a pas de passé, car il possède celui de tout le monde.</p>
+                    <p>Il apparaît souvent sous la forme d'un jeune homme dont les traits semblent légèrement décalés, comme s'il était mal affiché par la réalité. Il est le seul à pouvoir parler à la fois aux humains (Darius, Clara) et aux erreurs système (Kayden, la silhouette floue).</p>
+                </div>
+
+                <div class="data-section">
+                    <h2>CAPACITÉS DIVINES (CODE SOURCE)</h2>
+                    
+                    <div class="power-card">
+                        <h3>OVERWRITE (ÉCRASEMENT)</h3>
+                        <p>Elio peut réécrire les propriétés physiques d'un objet ou d'un lieu en changeant son code source. Il peut transformer un mur en porte, ou transformer le sol en une archive de souvenirs liquides.</p>
+                    </div>
+
+                    <div class="power-card">
+                        <h3>MEMORY RESTORATION (RÉÉCRITURE)</h3>
+                        <p>Il est le seul capable de rendre un souvenir définitivement supprimé à quelqu'un. Mais comme chaque action a une conséquence, Elio décide souvent de qui doit souffrir pour que ce souvenir revienne.</p>
+                    </div>
+
+                    <div class="power-card">
+                        <h3>GLITCH STEP (SAUT DE FRAME)</h3>
+                        <p>Elio ne se déplace pas, il se téléporte en sautant des "frames" de la réalité. Pour un observateur extérieur, il semble être à plusieurs endroits en même temps, entouré d'une aura de lumière blanche et de pixels.</p>
+                    </div>
+                </div>
+
+                <div class="data-section" style="border-left-color: var(--warning);">
+                    <h2>ALERTE SYSTÈME</h2>
+                    <p>Elio est neutre. Il n'aide pas Darius par bonté, mais par curiosité. Il observe si l'humanité peut survivre à la perte de sa propre mémoire. <strong>Si Elio décide de supprimer le Project M13, la réalité entière s'effacera avec lui.</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <h2>FRAGMENT DIVIN (SCÉNARIO)</h2>
+        <div class="scenario-box">
+            <p><strong>INT. LE VIDE BLANC (NIVEAU 0 DU SYSTÈME)</strong></p>
+            <p>Pas de murs. Pas de sol. Juste un horizon blanc infini, saturé de lignes de données dorées. ELIO (âge indéterminé) est assis sur un trône de serveurs démantelés.</p>
+            <p>DARIUS est debout face à lui, son corps grésillant violemment. Il semble sur le point de se dissoudre.</p>
+            
+            <p style="font-weight: bold;">ELIO</p>
+            <p>(Sa voix résonne de partout à la fois)</p>
+            <p>"Tu es fatigué, Darius. Porter tous ces souvenirs que tu n'étais pas censé garder... c'est lourd, n'est-ce pas ?"</p>
+            
+            <p style="color: #666;">DARIUS</p>
+            <p>"Rends-moi... le souvenir de ma mère. Clara dit que c'est toi qui l'as."</p>
+            
+            <p>Elio se lève. En un clin d'œil (un glitch), il est juste devant Darius. Il touche le front de Darius avec un doigt qui émet une lumière aveuglante.</p>
+            
+            <p style="font-weight: bold;">ELIO</p>
+            <p>"Je peux te le rendre. Mais tu connais la règle de M13. Pour chaque seconde de ce souvenir, je devrai effacer une année de ton futur. Es-tu prêt à mourir demain pour te souvenir d'hier ?"</p>
+            
+            <p>Darius hésite. Le monde blanc autour d'eux commence à se fissurer, révélant le noir absolu de l'espace système. Elio sourit, un sourire parfait, trop parfait pour être humain.</p>
+            
+            <p style="font-weight: bold;">ELIO</p>
+            <p>"Choisis bien, Host. Le Godmode n'accepte pas les remboursements."</p>
+            
+            <p>Darius ferme les yeux. Le vide blanc explose.</p>
+            
+            <p><strong>FADE OUT.</strong></p>
+        </div>
+
+    </div>
+
+    <footer style="padding: 50px; text-align: center; opacity: 0.3; font-family: monospace;">
+        PROJECT M13 - SYSTEM STATUS: TRANSCENDED - ELIO_05
+    </footer>
+
+</body>
+</html>

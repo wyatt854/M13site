@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJECT M13 | GLOBAL MONITORING</title>
+    <style>
+        :root {
+            --bg: #050505;
+            --primary: #e0e0e0;
+            --accent: #ff3333; /* Rouge alerte */
+            --secondary: #33ff00; /* Vert terminal */
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--primary);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ARRIÈRE-PLAN ANIMÉ */
+        .grid-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            transform: perspective(500px) rotateX(60deg);
+            transform-origin: top center;
+            animation: grid-move 20s linear infinite;
+        }
+
+        @keyframes grid-move {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 1000px; }
+        }
+
+        header {
+            padding: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            letter-spacing: -2px;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: monospace;
+            color: var(--accent);
+        }
+
+        .blink {
+            width: 10px; height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 1s infinite;
+        }
+
+        .main-nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 50px;
+            perspective: 1000px;
+        }
+
+        .char-card {
+            width: 180px;
+            height: 400px;
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            transition: 0.5s all ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: white;
+        }
+
+        /* GESTION DES IMAGES AVATARS */
+        .char-card .avatar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.6;
+            transition: 0.5s;
+        }
+
+        .char-card:hover .avatar {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .char-card:hover {
+            transform: translateY(-20px) scale(1.05);
+            background: rgba(255,255,255,0.1);
+            border-color: var(--secondary);
+            box-shadow: 0 0 30px rgba(51, 255, 0, 0.2);
+        }
+
+        .char-card h2 {
+            font-size: 2rem;
+            margin: 0;
+            z-index: 2;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+        }
+
+        .char-card span {
+            font-size: 0.8rem;
+            opacity: 0.5;
+            margin-top: 10px;
+            font-family: monospace;
+            z-index: 2;
+        }
+
+        .char-card::before {
+            content: attr(data-role);
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            opacity: 0;
+            transition: 0.3s;
+            color: var(--secondary);
+            z-index: 3;
+        }
+
+        .char-card:hover::before {
+            opacity: 1;
+        }
+
+        .intro-text {
+            position: fixed;
+            bottom: 40px;
+            left: 40px;
+            max-width: 400px;
+            font-family: monospace;
+            line-height: 1.6;
+            color: #666;
+            border-left: 2px solid var(--accent);
+            padding-left: 20px;
+        }
+
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+        @media (max-width: 768px) {
+            .main-nav { flex-direction: column; height: auto; }
+            .char-card { width: 100%; height: 100px; writing-mode: horizontal-tb; }
+            .char-card h2 { writing-mode: horizontal-tb; transform: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="grid-bg"></div>
+
+    <header>
+        <h1>M13</h1>
+        <div class="status-indicator">
+            <div class="blink"></div>
+            SYSTÈME INSTABLE
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <a href="darius.html" class="char-card" data-role="HOST / POSSÉSÉ">
+            <img src="mAZYMU.png" alt="Darius" class="avatar">
+            <span>01</span>
+            <h2>DARIUS</h2>
+        </a>
+
+        <a href="clara.html" class="char-card" data-role="BRAIN / ANCHOR">
+            <img src="clara.png" alt="Clara" class="avatar">
+            <span>02</span>
+            <h2>CLARA</h2>
+        </a>
+
+        <a href="alex.html" class="char-card" data-role="AUDIO / SENSOR">
+            <img src="alex.png" alt="Alex" class="avatar">
+            <span>03</span>
+            <h2>ALEX</h2>
+        </a>
+
+        <a href="kayden.html" class="char-card" data-role="THREAT / ROGUE">
+            <img src="kayden.png" alt="Kayden" class="avatar">
+            <span>04</span>
+            <h2>KAYDEN</h2>
+        </a>
+
+        <a href="elio.html" class="char-card" data-role="GLITCH / GODMODE">
+            <img src="elio.png" alt="Elio" class="avatar">
+            <span>05</span>
+            <h2>ELIO</h2>
+        </a>
+    </nav>
+
+    <div class="intro-text">
+        <p>> INITIALISATION DU PROTOCOLE...</p>
+        <p>> ATTENTION : La frontière entre le rêve et la donnée est rompue. Ces dossiers contiennent des fragments de mémoire vive. Ne regardez pas trop longtemps.</p>
+    </div>
+
+</body>
+</html>

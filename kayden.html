@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOSSIER : KAYDEN | PROJECT M13</title>
+    <style>
+        :root {
+            --bg: #050505;
+            --primary: #e0e0e0;
+            --accent: #8b0000; /* Rouge sang/sombre pour Kayden */
+            --secondary: #33ff00;
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--primary);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Effet de distorsion constante pour Kayden */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%), linear-gradient(90deg, rgba(139, 0, 0, 0.05), rgba(0, 0, 0, 0.05), rgba(139, 0, 0, 0.05));
+            z-index: 100;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        header {
+            padding: 20px 50px;
+            border-bottom: 2px solid var(--accent);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, rgba(139, 0, 0, 0.2), transparent);
+        }
+
+        .back-btn {
+            color: var(--primary);
+            text-decoration: none;
+            font-family: monospace;
+            border: 1px solid var(--primary);
+            padding: 5px 15px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 50px;
+            margin-bottom: 100px;
+        }
+
+        .profile-image {
+            width: 100%;
+            border: 1px solid rgba(139, 0, 0, 0.5);
+            position: sticky;
+            top: 50px;
+            box-shadow: 0 0 20px rgba(139, 0, 0, 0.2);
+        }
+
+        .profile-image img {
+            width: 100%;
+            display: block;
+            filter: grayscale(0.8) contrast(1.5) brightness(0.8);
+        }
+
+        .status-tag {
+            background: var(--accent);
+            color: #fff;
+            padding: 5px 15px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h1, h2, h3 {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        h1 { font-size: 4rem; margin: 0; color: #fff; text-shadow: 3px 3px 0px var(--accent); }
+
+        .data-section {
+            margin-bottom: 60px;
+            padding: 30px;
+            background: rgba(139, 0, 0, 0.05);
+            border-left: 4px solid var(--accent);
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .stats-table td {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-family: monospace;
+        }
+
+        .stats-table td:first-child { color: var(--accent); width: 200px; font-weight: bold; }
+
+        .power-card {
+            background: rgba(139, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+        }
+
+        .power-card h3 { color: #ff4d4d; margin-top: 0; }
+
+        .scenario-box {
+            background: #050000;
+            padding: 40px;
+            border: 1px solid #2b0000;
+            font-family: "Courier New", Courier, monospace;
+            color: #e0e0e0;
+            border-top: 4px solid var(--accent);
+        }
+
+        .warning-text {
+            color: var(--accent);
+            font-family: monospace;
+            font-weight: bold;
+            animation: blink 0.5s infinite;
+        }
+
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="back-btn">< RETOUR AU MONITORING</a>
+        <div style="text-align: right;">
+            <div style="font-family: monospace; color: var(--accent);">THREAT_LEVEL: EXTREME</div>
+            <div style="font-size: 0.8rem; opacity: 0.5;">CHARGEMENT DU DOSSIER CORROMPU...</div>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div class="profile-grid">
+            <div class="profile-image">
+                <img src="kayden.png" alt="Kayden">
+                <div class="status-tag">CLASSE : THREAT / ROGUE</div>
+                <table class="stats-table">
+                    <tr><td>DÉTECTION</td><td>--% <span style="color:var(--accent)">[OFFLINE]</span></td></tr>
+                    <tr><td>HOSTILITÉ</td><td>95%</td></tr>
+                    <tr><td>SANTÉ MENTALE</td><td>12%</td></tr>
+                </table>
+            </div>
+
+            <div class="bio">
+                <h1>KAYDEN</h1>
+                <p class="warning-text">> ALERTE : NE PAS TENTER DE SYNCHRONISATION MÉMOIRE.</p>
+                
+                <div class="data-section">
+                    <h2>HISTORIQUE DU SUJET</h2>
+                    <p>Kayden est l'échec le plus sanglant du <strong>PROJECT M13</strong>. Ancien membre de l'équipe de sécurité, il a été volontaire pour une procédure de suppression totale de ses traumatismes de guerre. Mais au lieu de disparaître, ses souvenirs se sont transformés en une entité virale à l'intérieur de son propre cerveau.</p>
+                    <p>Il ne vit plus dans la réalité, il vit dans les "déchets" du système. Il traque Darius car il voit en lui l'hôte parfait pour déverser toute la haine des souvenirs effacés qu'il porte en lui.</p>
+                </div>
+
+                <div class="data-section">
+                    <h2>CAPACITÉS DE CORRUPTION</h2>
+                    
+                    <div class="power-card">
+                        <h3>VOID WALK (MARCHE DU VIDE)</h3>
+                        <p>Kayden peut se déplacer physiquement à travers les zones de "données mortes" — les endroits où le Project-M13 a échoué à stabiliser la réalité. Il apparaît et disparaît dans des nuages de pixels noirs et de cendres mémorielles.</p>
+                    </div>
+
+                    <div class="power-card">
+                        <h3>L'INFILTRATION TRAUMATIQUE</h3>
+                        <p>D'un simple regard, il peut forcer sa victime à revivre son pire souvenir, mais version "M13" : déformé, technologique et sans fin. Il ne tue pas ses cibles, il les rend folles en saturant leur perception de données corrompues.</p>
+                    </div>
+
+                    <div class="power-card">
+                        <h3>REJET SYSTÉMIQUE</h3>
+                        <p>Kayden est invisible pour les radars de Clara et les capteurs d'Alex. Il génère une fréquence de rejet qui fait croire au système qu'il n'existe tout simplement pas, même lorsqu'il se tient juste derrière sa cible.</p>
+                    </div>
+                </div>
+
+                <div class="data-section" style="border-left-color: #000;">
+                    <h2>DANGER LOGICIEL</h2>
+                    <p>L'existence de Kayden prouve que <strong>rien ne disparaît vraiment.</strong> Il est la "conséquence" incarnée. Plus Darius et Clara essaient de réparer le système, plus Kayden devient puissant, car il se nourrit de chaque bit de mémoire supprimé.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>RAPPORT D'INCIDENT (SCÉNARIO) Bonus !</h2>
+        <div class="scenario-box">
+            <p><strong>EXT. TOIT D'UN IMMEUBLE - NUIT DE PLUIE (SIMULATION)</strong></p>
+            <p>La pluie tombe de travers, les gouttes disparaissant avant de toucher le sol. DARIUS est à bout de souffle, acculé contre le rebord.</p>
+            <p>Devant lui, l'air se déchire comme un tissu usé. KAYDEN (26 ans) sort du vide. Il porte une veste noire dont les lambeaux semblent flotter dans un vent qui n'existe pas. Ses yeux sont deux fentes de lumière rouge instable.</p>
+            
+            <p style="color: #ff4d4d;">KAYDEN</p>
+            <p>(Sa voix grésille comme une radio mal réglée)</p>
+            <p>"Tu penses qu'ils t'aident, Darius ? Ils ne font que creuser des trous dans ta tête pour les remplir de vide."</p>
+            
+            <p style="color: var(--secondary);">DARIUS</p>
+            <p>"Dégage de ma tête, Kayden ! Tu n'es qu'une erreur de code !"</p>
+            
+            <p>Kayden sourit, révélant des dents qui semblent se multiplier un court instant.</p>
+            
+            <p style="color: #ff4d4d;">KAYDEN</p>
+            <p>"Une erreur ? Non. Je suis le reste. Je suis tout ce que tu as eu trop peur de garder. Tu te souviens de l'odeur de l'essence ? Du bruit du crash ?"</p>
+            
+            <p>Darius s'effondre, se tenant la tête. La pluie devient noire. Le toit commence à se dissoudre en lignes de code qui montent vers le ciel.</p>
+            
+            <p style="color: #ff4d4d;">KAYDEN</p>
+            <p>"Laisse-moi entrer, Host. On va leur montrer ce qui arrive quand on essaie de supprimer la vérité."</p>
+            
+            <p>Kayden lève la main, et des fils de données noires jaillissent de ses doigts, s'enfonçant dans les tempes de Darius.</p>
+            
+            <p><strong>CUT TO BLACK.</strong></p>
+        </div>
+
+    </div>
+
+    <footer style="padding: 50px; text-align: center; opacity: 0.3; font-family: monospace;">
+        ANNULATION DU PROTOCOLE - SUJET HORS CONTRÔLE - KAYDEN_04
+    </footer>
+
+</body>
+</html>

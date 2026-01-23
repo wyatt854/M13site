@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOSSIER : CLARA | PROJECT M13</title>
+    <style>
+        :root {
+            --bg: #050505;
+            --primary: #e0e0e0;
+            --accent: #00d4ff; /* Cyan pour Clara */
+            --secondary: #33ff00;
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--primary);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Effet de scanline */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(0, 212, 255, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 100;
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+        }
+
+        header {
+            padding: 20px 50px;
+            border-bottom: 1px solid var(--accent);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .back-btn {
+            color: var(--primary);
+            text-decoration: none;
+            font-family: monospace;
+            border: 1px solid var(--primary);
+            padding: 5px 15px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--accent);
+            color: var(--bg);
+            border-color: var(--accent);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 50px;
+            margin-bottom: 100px;
+        }
+
+        .profile-image {
+            width: 100%;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            position: sticky;
+            top: 50px;
+        }
+
+        .profile-image img {
+            width: 100%;
+            display: block;
+            filter: saturate(0.8) contrast(1.1);
+        }
+
+        .status-tag {
+            background: var(--accent);
+            color: #000;
+            padding: 5px 15px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        h1, h2, h3 {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h1 { font-size: 4rem; margin: 0; color: #fff; text-shadow: 0 0 10px rgba(0, 212, 255, 0.5); }
+
+        .data-section {
+            margin-bottom: 60px;
+            padding: 30px;
+            background: var(--glass);
+            border-left: 4px solid var(--accent);
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .stats-table td {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-family: monospace;
+        }
+
+        .stats-table td:first-child { color: var(--accent); width: 200px; }
+
+        .power-card {
+            background: rgba(0, 212, 255, 0.02);
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px dashed rgba(0, 212, 255, 0.3);
+        }
+
+        .power-card h3 { color: var(--accent); margin-top: 0; }
+
+        .scenario-box {
+            background: #0a0a0a;
+            padding: 40px;
+            border: 1px solid #1a1a1a;
+            font-family: "Courier New", Courier, monospace;
+            color: #ccc;
+            border-top: 4px solid var(--accent);
+        }
+
+        .intel-text {
+            color: var(--accent);
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="back-btn">< RETOUR AU MONITORING</a>
+        <div style="text-align: right;">
+            <div style="font-family: monospace; color: var(--accent);">ID_CLARA_99210</div>
+            <div style="font-size: 0.8rem; opacity: 0.5;">ANALYSE NEURONALE EN COURS...</div>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div class="profile-grid">
+            <div class="profile-image">
+                <img src="clara.png" alt="Clara">
+                <div class="status-tag">RÔLE : BRAIN / ANCHOR</div>
+                <table class="stats-table">
+                    <tr><td>STABILITÉ PSY</td><td>98% <span style="color:var(--secondary)">[OPTIMAL]</span></td></tr>
+                    <tr><td>INTÉGRITÉ MÉMOIRE</td><td>100%</td></tr>
+                    <tr><td>CONNEXION RESEAU</td><td>SYNC_ACTIVE</td></tr>
+                </table>
+            </div>
+
+            <div class="bio">
+                <h1>CLARA</h1>
+                <p class="intel-text">> "Si on perd le fil du réel, on ne revient jamais. Je suis le fil."</p>
+                
+                <div class="data-section">
+                    <h2>CARACTÉRISTIQUES</h2>
+                    <p>Clara est le pilier rationnel du groupe. Équipée de dispositifs de monitoring avancés (casque neuronal et interface tactile), elle est la seule capable de naviguer dans les flux de données du <strong>PROJECT M13</strong> sans perdre la notion de la réalité. Elle porte constamment un carnet physique — un objet archaïque qui lui sert de "point d'ancrage" absolu pour vérifier si elle est dans un rêve ou dans le monde réel.</p>
+                    <p>D'apparence calme et méthodique, elle cache une obsession pour les souvenirs supprimés. Elle est celle qui déchiffre les fragments que Darius ramène de ses crises.</p>
+                </div>
+
+                <div class="data-section">
+                    <h2>POUVOIRS & CAPACITÉS</h2>
+                    
+                    <div class="power-card">
+                        <h3>PROTOCOLE D'ANCRAGE (THE TETHER)</h3>
+                        <p>Clara peut lier sa conscience à celle de Darius. Tant que le lien est actif, elle agit comme une balise de secours, empêchant l'esprit de Darius de se dissoudre complètement dans les cauchemars technologiques. Elle "stabilise" le décor environnant.</p>
+                    </div>
+
+                    <div class="power-card">
+                        <h3>ARCHITECTURE MÉMORIELLE</h3>
+                        <p>Elle ne se contente pas de voir les souvenirs, elle peut les cartographier. Elle transforme les pensées abstraites en structures géométriques qu'elle peut analyser pour trouver des failles ou des accès cachés dans le système M13.</p>
+                    </div>
+
+                    <div class="power-card">
+                        <h3>RESTAURATION DE DONNÉES</h3>
+                        <p>Grâce à son interface, elle peut forcer le système à "re-rendre" un fragment de réalité qui a été supprimé. Cela crée un espace stable temporaire, mais attire immédiatement l'attention des systèmes de sécurité ou de la silhouette floue.</p>
+                    </div>
+                </div>
+
+                <div class="data-section" style="border-left-color: #666;">
+                    <h2>DIAGNOSTIC DU SYSTÈME</h2>
+                    <p>Clara est consciente de la règle fondamentale : <strong>chaque suppression crée une conséquence.</strong> Elle consigne méticuleusement ces effets secondaires. Elle soupçonne que son propre passé a été altéré par M13, mais elle refuse de chercher la vérité par peur de briser son rôle d'ancre pour l'équipe.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>EXTRAIT DE MISSION (SCÉNARIO)</h2>
+        <div class="scenario-box">
+            <p><strong>INT. LABO DE CONTRÔLE IMPROVISÉ - NUIT</strong></p>
+            <p>Des dizaines d'écrans flottent dans l'obscurité, projetant une lueur bleutée sur le visage de CLARA (24 ans). Elle porte son casque, ses yeux scannant des lignes de code qui défilent à une vitesse inhumaine.</p>
+            <p>Soudain, un signal ROUGE sature la pièce. À travers la vitre, elle voit DARIUS convulser dans son caisson.</p>
+            
+            <p style="color: var(--accent);">CLARA</p>
+            <p>(Calme, mais rapide)</p>
+            <p>"Alex, augmente la fréquence sur le canal 4. Le cortex de Darius est en train de se synchroniser avec une archive corrompue."</p>
+            
+            <p>Elle tape frénétiquement sur sa tablette. Une image floue apparaît sur son écran principal : une main qui tend une clé. L'image grésille, se transforme en une cascade de pixels noirs.</p>
+            
+            <p style="color: var(--secondary);">VOIX D'ALEX (Radio)</p>
+            <p>"Je n'y arrive pas ! La silhouette est entre lui et le signal. Elle bloque tout !"</p>
+            
+            <p style="color: var(--accent);">CLARA</p>
+            <p>"Elle ne bloque rien, elle se nourrit. Darius, écoute ma voix. Regarde ton poignet gauche. Souviens-toi de la montre que tu ne portes plus. C'est ça ton ancre. Focalise-toi sur le poids du métal."</p>
+            
+            <p>Clara ferme les yeux. Ses propres doigts commencent à devenir transparents, laissant apparaître les circuits bleus de l'interface M13 sous sa peau.</p>
+            
+            <p style="color: var(--accent);">CLARA</p>
+            <p>"Si tu tombes, on tombe ensemble. Et je n'ai pas prévu de mourir dans un dossier archivé."</p>
+            
+            <p>Le signal se stabilise. La lumière bleue reprend le dessus. Clara expire, une goutte de sang coulant de sa narine.</p>
+            <p><strong>CUT TO BLACK.</strong></p>
+        </div>
+
+    </div>
+
+    <footer style="padding: 50px; text-align: center; opacity: 0.3; font-family: monospace;">
+        DOSSIER ANALYTIQUE - PROPRIÉTÉ DU PROJECT M13 - NE PAS DUPLIQUER
+    </footer>
+
+</body>
+</html>
