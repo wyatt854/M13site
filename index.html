@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M13 by Siroxtag</title>
+    <meta name="description" content="Interface de monitoring du PROJECT M13. Surveillance des sujets Darius, Clara, Alex, Kayden et Elio. Accès aux archives de mémoire.">
+    
+    <link rel="preload" as="image" href="darius.png" fetchpriority="high">
+    
+    <title>PROJECT M13 | MONITORING SYSTEM</title>
+    
     <style>
         :root {
             --bg: #050505;
-            --primary: #e0e0e0;
+            --primary: #ffffff; 
             --accent: #ff3333; 
             --secondary: #33ff00; 
-            --glass: rgba(0, 0, 0, 0.6);
         }
 
+        /* PERFORMANCE : Utilisation de content-visibility pour accélérer le rendu */
         body {
             background-color: var(--bg);
             color: var(--primary);
@@ -24,7 +29,7 @@
             flex-direction: column;
         }
 
-        /* GRILLE DE FOND */
+        /* Optimisation du GPU pour l'animation de la grille */
         .grid-bg {
             position: fixed;
             top: -50%; left: -50%; width: 200%; height: 200%;
@@ -35,11 +40,12 @@
             z-index: -1;
             transform: perspective(500px) rotateX(60deg);
             animation: grid-move 40s linear infinite;
+            will-change: transform; /* Aide le navigateur à anticiper l'animation */
         }
 
         @keyframes grid-move {
-            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
-            100% { transform: perspective(500px) rotateX(60deg) translateY(60px); }
+            from { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            to { transform: perspective(500px) rotateX(60deg) translateY(60px); }
         }
 
         header {
@@ -52,50 +58,50 @@
             z-index: 10;
         }
 
-        h1 { font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase; margin: 0; }
+        h1 { font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase; margin: 0; color: #fff; }
 
-        .main-nav {
+        /* ACCESSIBILITÉ : Landmark Main pour le SEO et les lecteurs d'écran */
+        main {
             flex-grow: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
             padding: 20px;
             z-index: 5;
         }
 
-        /* CARTES AVEC IMAGES */
+        .main-nav {
+            display: flex;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
         .char-card {
             width: 180px;
             height: 450px;
             border: 1px solid rgba(255,255,255,0.1);
             position: relative;
             overflow: hidden;
-            text-decoration: none;
-            color: white;
+            text-decoration: none !important;
+            color: #ffffff !important;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             padding: 15px;
-            transition: 0.4s ease;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             background-size: cover;
             background-position: center;
+            background-color: #111;
         }
 
-        /* Overlay sombre pour lire le texte */
         .char-card::after {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 20%, transparent 80%);
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 10%, transparent 70%);
             z-index: 1;
-        }
-
-        .char-card:hover {
-            transform: scale(1.05);
-            border-color: var(--secondary);
-            box-shadow: 0 0 30px rgba(51, 255, 0, 0.2);
-            z-index: 10;
         }
 
         .char-card h2 {
@@ -104,24 +110,32 @@
             z-index: 2;
             writing-mode: vertical-rl;
             transform: rotate(180deg);
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
 
         .char-card span {
             font-size: 0.7rem;
             z-index: 2;
             font-family: monospace;
-            opacity: 0.7;
+            color: var(--secondary);
+            margin-bottom: 5px;
         }
 
-        /* IMAGES SPECIFIQUES */
+        /* SEO & ACCESSIBILITÉ : Contraste amélioré sur le hover */
+        .char-card:hover {
+            transform: scale(1.03);
+            border-color: var(--secondary);
+            box-shadow: 0 0 20px rgba(51, 255, 0, 0.2);
+        }
+
+        /* Attribution des images */
         .card-darius { background-image: url('darius.png'); }
         .card-clara { background-image: url('clara.png'); }
         .card-alex { background-image: url('alex.png'); }
         .card-kayden { background-image: url('kayden.png'); }
         .card-elio { background-image: url('elio.png'); }
 
-        /* RESPONSIVE MOBILE */
         @media (max-width: 768px) {
             .main-nav {
                 display: grid;
@@ -130,66 +144,63 @@
             }
             .char-card {
                 width: auto;
-                height: 200px;
-                writing-mode: horizontal-tb;
+                height: 220px;
             }
             .char-card h2 {
                 writing-mode: horizontal-tb;
                 transform: none;
-                font-size: 1.2rem;
-            }
-            .char-card:last-child {
-                grid-column: span 2;
-                height: 120px;
+                font-size: 1.3rem;
             }
         }
 
-        .intro-text {
-            padding: 20px 30px;
+        /* BEST PRACTICE : Footer pour les landmarks */
+        footer {
+            padding: 15px;
+            text-align: center;
             font-family: monospace;
-            font-size: 0.8rem;
-            color: #666;
-            background: black;
+            font-size: 0.6rem;
+            color: rgba(255,255,255,0.3);
             border-top: 1px solid rgba(255,255,255,0.05);
         }
     </style>
 </head>
 <body>
+    <div class="grid-bg" aria-hidden="true"></div>
 
-    <div class="grid-bg"></div>
-
-    <header>
-        <h1>M13</h1>
-        <div style="font-family: monospace; font-size: 0.7rem; color: var(--secondary);">ONLINE</div>
+    <header role="banner">
+        <h1>M13 // MONITORING</h1>
+        <div style="font-family: monospace; font-size: 0.7rem; color: var(--secondary);" aria-live="polite">
+            LIAISON_ÉTABLIE
+        </div>
     </header>
 
-    <nav class="main-nav">
-        <a href="/darius" class="char-card card-darius">
-            <span>ID_01</span>
-            <h2>DARIUS</h2>
-        </a>
-        <a href="/clara" class="char-card card-clara">
-            <span>ID_02</span>
-            <h2>CLARA</h2>
-        </a>
-        <a href="/alex" class="char-card card-alex">
-            <span>ID_03</span>
-            <h2>ALEX</h2>
-        </a>
-        <a href="/kayden" class="char-card card-kayden">
-            <span>ID_04</span>
-            <h2>KAYDEN</h2>
-        </a>
-        <a href="/elio" class="char-card card-elio">
-            <span>ID_00</span>
-            <h2>ELIO</h2>
-        </a>
-    </nav>
+    <main>
+        <nav class="main-nav" aria-label="Navigation des sujets">
+            <a href="/darius" class="char-card card-darius" aria-label="Dossier de Darius">
+                <span>ID_01</span>
+                <h2>DARIUS</h2>
+            </a>
+            <a href="/clara" class="char-card card-clara" aria-label="Dossier de Clara">
+                <span>ID_02</span>
+                <h2>CLARA</h2>
+            </a>
+            <a href="/alex" class="char-card card-alex" aria-label="Dossier d'Alex">
+                <span>ID_03</span>
+                <h2>ALEX</h2>
+            </a>
+            <a href="/kayden" class="char-card card-kayden" aria-label="Dossier de Kayden">
+                <span>ID_04</span>
+                <h2>KAYDEN</h2>
+            </a>
+            <a href="/elio" class="char-card card-elio" aria-label="Dossier d'Elio">
+                <span>ID_00</span>
+                <h2>ELIO</h2>
+            </a>
+        </nav>
+    </main>
 
-    <div class="intro-text">
-        > SYSTÈME OPÉRATIONNEL. SÉLECTIONNEZ UN SUJET POUR ACCÉDER AUX MÉMOIRES.
-    </div>
-
+    <footer role="contentinfo">
+        <p>© 2026 PROJECT M13 - SYSTÈME DE GESTION DES SOUVENIRS RÉSIDUELS. TOUT EFFACEMENT EST DÉFINITIF.</p>
+    </footer>
 </body>
 </html>
-
