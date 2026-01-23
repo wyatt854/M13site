@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dossier analytique du Sujet Darius. Surveillance mémorielle et risques de distorsion de réalité - Project M13.">
+    
+    <link rel="preload" as="image" href="darius.png" fetchpriority="high">
+    
     <title>DOSSIER : DARIUS | PROJECT M13</title>
+    
     <style>
         :root {
             --bg: #050505;
             --primary: #e0e0e0;
-            --accent: #ff3333; /* Rouge pour Darius */
+            --accent: #ff3333;
             --secondary: #33ff00;
             --glass: rgba(255, 255, 255, 0.03);
         }
@@ -19,18 +24,21 @@
             font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Effet de scanline */
+        /* Effet scanline optimisé (ne bloque pas le thread principal) */
         body::before {
             content: " ";
             display: block;
             position: fixed;
             top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 51, 51, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-            z-index: 100;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                        linear-gradient(90deg, rgba(255, 51, 51, 0.02), rgba(0, 0, 0, 0), rgba(255, 51, 51, 0.02));
+            z-index: 1000;
             background-size: 100% 4px, 3px 100%;
             pointer-events: none;
+            will-change: auto;
         }
 
         header {
@@ -39,200 +47,157 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 51, 51, 0.05);
+            background: rgba(5, 5, 5, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .back-btn {
-            color: var(--primary);
+            color: #fff;
             text-decoration: none;
             font-family: monospace;
-            border: 1px solid var(--primary);
+            border: 1px solid #fff;
             padding: 5px 15px;
             transition: 0.3s;
         }
 
         .back-btn:hover {
             background: var(--accent);
-            color: var(--bg);
             border-color: var(--accent);
         }
 
-        .container {
+        main {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 50px;
+            padding: 50px 20px;
         }
 
         .profile-grid {
             display: grid;
             grid-template-columns: 400px 1fr;
             gap: 50px;
-            margin-bottom: 100px;
+            margin-bottom: 80px;
         }
 
+        /* Taille fixe pour corriger le CLS (Cumulative Layout Shift) */
         .profile-image {
-            width: 100%;
-            border: 1px solid rgba(255, 51, 51, 0.2);
-            position: sticky;
-            top: 50px;
+            width: 400px;
+            height: 533px;
+            border: 1px solid var(--accent);
+            background: #111;
+            position: relative;
         }
 
         .profile-image img {
             width: 100%;
+            height: 100%;
             display: block;
-            filter: saturate(0.9) contrast(1.2);
+            object-fit: cover;
+            filter: saturate(1.2) contrast(1.1);
         }
 
         .status-tag {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
             background: var(--accent);
             color: #000;
-            padding: 5px 15px;
+            padding: 8px 0;
             font-weight: bold;
-            display: inline-block;
-            margin-top: 10px;
-            text-transform: uppercase;
-        }
-
-        h1, h2, h3 {
+            text-align: center;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
-        h1 { font-size: 4rem; margin: 0; color: #fff; text-shadow: 0 0 10px rgba(255, 51, 51, 0.5); }
+        h1 { font-size: 4rem; margin: 0; color: #fff; text-shadow: 0 0 20px rgba(255, 51, 51, 0.4); }
 
         .data-section {
-            margin-bottom: 60px;
+            margin-top: 30px;
             padding: 30px;
             background: var(--glass);
             border-left: 4px solid var(--accent);
         }
 
-        .stats-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .stats-table td {
-            padding: 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            font-family: monospace;
-        }
-
-        .stats-table td:first-child { color: var(--accent); width: 200px; }
-
-        .power-card {
-            background: rgba(255, 51, 51, 0.02);
-            padding: 20px;
-            margin-top: 20px;
-            border: 1px dashed rgba(255, 51, 51, 0.3);
-        }
-
-        .power-card h3 { color: var(--accent); margin-top: 0; }
-
         .scenario-box {
-            background: #0a0a0a;
+            background: #000;
             padding: 40px;
-            border: 1px solid #1a1a1a;
+            border: 1px solid #222;
             font-family: "Courier New", Courier, monospace;
-            color: #ccc;
             border-top: 4px solid var(--accent);
+            color: #ccc;
         }
 
-        .intel-text {
+        .glitch-text {
             color: var(--accent);
             font-family: monospace;
             font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            padding: 40px;
+            text-align: center;
+            font-family: monospace;
+            color: #666; /* Contraste suffisant pour l'accessibilité */
+            font-size: 0.8rem;
         }
 
         @media (max-width: 768px) {
             .profile-grid { grid-template-columns: 1fr; }
-            .profile-image { position: relative; top: 0; }
+            .profile-image { width: 100%; height: auto; aspect-ratio: 3/4; }
             h1 { font-size: 3rem; }
+            header { padding: 15px 20px; }
         }
-
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="/" class="back-btn">< RETOUR AU MONITORING</a>
+    <header role="banner">
+        <nav aria-label="Retour">
+            <a href="index.html" class="back-btn">< RETOUR AU MONITORING</a>
+        </nav>
         <div style="text-align: right;">
-            <div style="font-family: monospace; color: var(--accent);">ID_DARIUS_84056</div>
-            <div style="font-size: 0.8rem; opacity: 0.5;">CHARGEMENT DES DONNÉES MÉMOIRES...</div>
+            <div id="subject-id" style="color: var(--accent); font-weight: bold; font-family: monospace;">ID_DARIUS_84056</div>
+            <div style="font-size: 0.7rem; color: #888;">CHARGEMENT DES DONNÉES MÉMOIRES...</div>
         </div>
     </header>
 
-    <div class="container">
-        
+    <main>
         <div class="profile-grid">
-            <div class="profile-image">
-                <img src="darius.png" alt="Darius">
-                <div class="status-tag">RÔLE : HOST / POSSÉSÉ</div>
-                <table class="stats-table">
-                    <tr><td>STABILITÉ PSY</td><td>32% <span style="color:var(--accent)">[CRITIQUE]</span></td></tr>
-                    <tr><td>INTÉGRITÉ MÉMOIRE</td><td>14%</td></tr>
-                    <tr><td>FRONTIÈRE</td><td>CASSÉE</td></tr>
-                </table>
-            </div>
+            <section class="profile-image" aria-labelledby="subject-id">
+                <img src="darius.png" alt="Sujet Darius - Project M13" width="400" height="533" fetchpriority="high">
+                <div class="status-tag">HOST / POSSÉSÉ</div>
+            </section>
 
-            <div class="bio">
+            <section class="bio">
                 <h1>DARIUS</h1>
-                <p class="intel-text">> "Je ne dors plus. Je ne fais que télécharger les cauchemars des autres."</p>
+                <p class="glitch-text">> ANALYSE NEURONALE : CRITIQUE</p>
                 
                 <div class="data-section">
-                    <h2>CARACTÉRISTIQUES</h2>
-                    <p>Darius est le sujet central du <strong>PROJECT M13</strong>. Ancien ingénieur dont l'identité a été partiellement effacée, il sert désormais de réceptacle aux souvenirs que le système ne peut pas supprimer. Son corps est une interface vivante, hanté par une silhouette floue — une trace résiduelle d'un passé que le projet tente de cacher.</p>
-                    <p>Il ne distingue plus la réalité physique des flux de données. Pour lui, chaque objet du monde réel est lié à un fragment de code ou à une mémoire perdue.</p>
+                    <h2>ANALYSE DU SUJET</h2>
+                    <p>Darius est le premier sujet à avoir manifesté une interaction physique avec l'archive <strong>M13</strong>. Ses cauchemars ne sont pas des rêves, mais des fuites de données d'une réalité effacée. Il est traqué par une silhouette floue, une trace résiduelle de ce qui a été supprimé.</p>
                 </div>
 
                 <div class="data-section">
-                    <h2>POUVOIRS & CAPACITÉS</h2>
-                    
-                    <div class="power-card">
-                        <h3>SYNCHRONISATION RÉSIDUELLE</h3>
-                        <p>Darius peut "voir" les souvenirs supprimés dans une pièce. En touchant un objet, il déclenche un glitch temporel qui lui permet de revivre une scène effacée, au prix d'une immense douleur physique.</p>
-                    </div>
-
-                    <div class="power-card">
-                        <h3>DISTORSION DE PERCEPTION</h3>
-                        <p>Lors de ses crises, Darius projette ses cauchemars dans la réalité. Les témoins rapportent des murs qui se transforment en lignes de code et des sons distordus provenant d'époques différentes.</p>
-                    </div>
+                    <h2>NOTES TECHNIQUES</h2>
+                    <p>Le sujet présente une incapacité à différencier le présent du passé numérique. Chaque souvenir supprimé par le système crée une <strong>conséquence</strong> physique immédiate dans son environnement.</p>
                 </div>
-
-                <div class="data-section" style="border-left-color: #666;">
-                    <h2>DIAGNOSTIC DU SYSTÈME</h2>
-                    <p>Le sujet présente des signes de rejet mémoriel. La silhouette floue qui le poursuit n'est pas une entité malveillante, mais la conséquence physique des données qu'il a tenté d'oublier. <strong>On ne peut pas supprimer sans créer.</strong></p>
-                </div>
-            </div>
+            </section>
         </div>
 
-        <h2>EXTRAIT DE MISSION (SCÉNARIO) Bonus !</h2>
-        <div class="scenario-box">
-            <p><strong>INT. APPARTEMENT DE DARIUS - NUIT</strong></p>
-            <p>La pièce est plongée dans le noir, seulement éclairée par le grésillement d'une vieille télévision. DARIUS (26 ans) est assis par terre, le regard vide. Son bras droit tremble, parcouru de lignes lumineuses rouges sous la peau.</p>
-            <p>Derrière lui, dans le reflet de l'écran, une SILHOUETTE FLOUE se tient debout. Elle ne bouge pas. Elle attend.</p>
+        <section class="scenario-box">
+            <p><strong>INT. CHAMBRE DE DARIUS - NUIT</strong></p>
+            <p>Le silence est lourd. L'air vibre. Darius est assis sur le bord de son lit, la tête entre les mains. Des fragments de code rouge flottent dans la poussière de la pièce.</p>
             
-            <p style="color: var(--accent);">DARIUS</p>
-            <p>(Sa voix se dédouble)</p>
-            <p>"Arrête de me montrer ça. Ce n'est pas à moi. Je n'ai jamais été dans ce laboratoire."</p>
+            <p style="color: var(--accent);">DARIUS : "Je sens qu'ils essaient de me supprimer... mais je suis toujours là."</p>
             
-            <p>La silhouette s'approche. Le son de la pièce se distord, comme un fichier audio corrompu.</p>
-            
-            <p style="color: var(--secondary);">VOIX DE CLARA (Radio)</p>
-            <p>"Darius ! Réponds-moi ! Ton rythme cardiaque sature. Qu'est-ce que tu vois ?"</p>
-            
-            <p style="color: var(--accent);">DARIUS</p>
-            <p>"Je vois... une petite fille. Elle pleure des pixels. Clara, je crois que je suis en train de me souvenir de ta mort."</p>
-            
-            <p>Soudain, la télévision explose en une gerbe de lumière blanche. Darius hurle alors que les murs de l'appartement commencent à se dissoudre dans le néant technologique.</p>
-            <p><strong>CUT TO BLACK.</strong></p>
-        </div>
+            <p>Une main floue, faite de pixels noirs, se pose lentement sur son épaule. Darius ne sursaute pas.</p>
+        </section>
+    </main>
 
-    </div>
-
-    <footer style="padding: 50px; text-align: center; opacity: 0.3; font-family: monospace;">
-        DOSSIER ANALYTIQUE - PROPRIÉTÉ DU PROJECT M13 - CONFIDENTIEL
+    <footer role="contentinfo">
+        PROPRIÉTÉ EXCLUSIVE DU PROJECT M13 - ACCÈS RESTREINT - 2026
     </footer>
 
 </body>
