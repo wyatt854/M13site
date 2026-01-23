@@ -8,9 +8,9 @@
         :root {
             --bg: #050505;
             --primary: #e0e0e0;
-            --accent: #ff3333; /* Rouge alerte */
-            --secondary: #33ff00; /* Vert terminal */
-            --glass: rgba(255, 255, 255, 0.03);
+            --accent: #ff3333; 
+            --secondary: #33ff00; 
+            --glass: rgba(0, 0, 0, 0.6);
         }
 
         body {
@@ -19,149 +19,138 @@
             font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             overflow-x: hidden;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        /* ARRIÈRE-PLAN ANIMÉ */
+        /* GRILLE DE FOND */
         .grid-bg {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: -50%; left: -50%; width: 200%; height: 200%;
             background: 
-                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
+                linear-gradient(rgba(51, 255, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(51, 255, 0, 0.05) 1px, transparent 1px);
+            background-size: 60px 60px;
             z-index: -1;
             transform: perspective(500px) rotateX(60deg);
-            transform-origin: top center;
-            animation: grid-move 20s linear infinite;
+            animation: grid-move 40s linear infinite;
         }
 
         @keyframes grid-move {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 1000px; }
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(60px); }
         }
 
-        /* HEADER */
         header {
-            padding: 40px;
+            padding: 20px 30px;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: rgba(0,0,0,0.9);
+            z-index: 10;
         }
 
-        h1 {
-            font-size: 3rem;
-            letter-spacing: -2px;
-            margin: 0;
-            text-transform: uppercase;
-        }
+        h1 { font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase; margin: 0; }
 
-        .status-indicator {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: monospace;
-            color: var(--accent);
-        }
-
-        .blink {
-            width: 10px; height: 10px;
-            background: var(--accent);
-            border-radius: 50%;
-            animation: pulse 1s infinite;
-        }
-
-        /* NAVIGATION PRINCIPALE */
         .main-nav {
             flex-grow: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
-            padding: 50px;
-            perspective: 1000px;
+            gap: 10px;
+            padding: 20px;
+            z-index: 5;
         }
 
+        /* CARTES AVEC IMAGES */
         .char-card {
             width: 180px;
-            height: 400px;
-            background: var(--glass);
+            height: 450px;
             border: 1px solid rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 20px;
-            transition: 0.5s all ease;
-            cursor: pointer;
             position: relative;
             overflow: hidden;
             text-decoration: none;
             color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 15px;
+            transition: 0.4s ease;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Overlay sombre pour lire le texte */
+        .char-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 20%, transparent 80%);
+            z-index: 1;
         }
 
         .char-card:hover {
-            transform: translateY(-20px) scale(1.05);
-            background: rgba(255,255,255,0.1);
+            transform: scale(1.05);
             border-color: var(--secondary);
             box-shadow: 0 0 30px rgba(51, 255, 0, 0.2);
+            z-index: 10;
         }
 
         .char-card h2 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin: 0;
             z-index: 2;
             writing-mode: vertical-rl;
             transform: rotate(180deg);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
         }
 
         .char-card span {
-            font-size: 0.8rem;
-            opacity: 0.5;
-            margin-top: 10px;
-            font-family: monospace;
-        }
-
-        /* EFFET DE SURVOL TEXTE */
-        .char-card::before {
-            content: attr(data-role);
-            position: absolute;
-            top: 20px;
-            left: 20px;
             font-size: 0.7rem;
-            letter-spacing: 2px;
-            opacity: 0;
-            transition: 0.3s;
-            color: var(--secondary);
-        }
-
-        .char-card:hover::before {
-            opacity: 1;
-        }
-
-        /* TEXTE INTRODUCTION */
-        .intro-text {
-            position: fixed;
-            bottom: 40px;
-            left: 40px;
-            max-width: 400px;
+            z-index: 2;
             font-family: monospace;
-            line-height: 1.6;
-            color: #666;
-            border-left: 2px solid var(--accent);
-            padding-left: 20px;
+            opacity: 0.7;
         }
 
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        /* IMAGES SPECIFIQUES */
+        .card-darius { background-image: url('darius.png'); }
+        .card-clara { background-image: url('clara.png'); }
+        .card-alex { background-image: url('alex.png'); }
+        .card-kayden { background-image: url('kayden.png'); }
+        .card-elio { background-image: url('elio.png'); }
 
-        /* RESPONSIVE */
+        /* RESPONSIVE MOBILE */
         @media (max-width: 768px) {
-            .main-nav { flex-direction: column; height: auto; }
-            .char-card { width: 100%; height: 100px; writing-mode: horizontal-tb; }
-            .char-card h2 { writing-mode: horizontal-tb; transform: none; }
+            .main-nav {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .char-card {
+                width: auto;
+                height: 200px;
+                writing-mode: horizontal-tb;
+            }
+            .char-card h2 {
+                writing-mode: horizontal-tb;
+                transform: none;
+                font-size: 1.2rem;
+            }
+            .char-card:last-child {
+                grid-column: span 2;
+                height: 120px;
+            }
+        }
+
+        .intro-text {
+            padding: 20px 30px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: #666;
+            background: black;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
     </style>
 </head>
@@ -170,39 +159,35 @@
     <div class="grid-bg"></div>
 
     <header>
-        <h1>M13 // PROJECT</h1>
-        <div class="status-indicator">
-            <div class="blink"></div>
-            SYSTÈME INSTABLE
-        </div>
+        <h1>M13 // MONITORING</h1>
+        <div style="font-family: monospace; font-size: 0.7rem; color: var(--secondary);">ONLINE</div>
     </header>
 
     <nav class="main-nav">
-        <a href="darius.html" class="char-card" data-role="HOST / POSSÉSÉ">
-            <span>01</span>
+        <a href="/darius" class="char-card card-darius">
+            <span>ID_01</span>
             <h2>DARIUS</h2>
         </a>
-        <a href="clara.html" class="char-card" data-role="BRAIN / ANCHOR">
-            <span>02</span>
+        <a href="/clara" class="char-card card-clara">
+            <span>ID_02</span>
             <h2>CLARA</h2>
         </a>
-        <a href="alex.html" class="char-card" data-role="AUDIO / SENSOR">
-            <span>03</span>
+        <a href="/alex" class="char-card card-alex">
+            <span>ID_03</span>
             <h2>ALEX</h2>
         </a>
-        <a href="kayden.html" class="char-card" data-role="THREAT / ROGUE">
-            <span>04</span>
+        <a href="/kayden" class="char-card card-kayden">
+            <span>ID_04</span>
             <h2>KAYDEN</h2>
         </a>
-        <a href="elio.html" class="char-card" data-role="GLITCH / GODMODE">
-            <span>05</span>
+        <a href="/elio" class="char-card card-elio">
+            <span>ID_00</span>
             <h2>ELIO</h2>
         </a>
     </nav>
 
     <div class="intro-text">
-        <p>> INITIALISATION DU PROTOCOLE...</p>
-        <p>> ATTENTION : La frontière entre le rêve et la donnée est rompue. Ces dossiers contiennent des fragments de mémoire vive. Ne regardez pas trop longtemps.</p>
+        > SYSTÈME OPÉRATIONNEL. SÉLECTIONNEZ UN SUJET POUR ACCÉDER AUX MÉMOIRES.
     </div>
 
 </body>
