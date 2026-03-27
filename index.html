@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-T29H3VJD');</script>
-<!-- End Google Tag Manager -->
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Interface de monitoring du PROJECT M13. Surveillance des sujets Darius, Clara, Alex, Kayden et Elio. Accès aux archives de mémoire.">
     
@@ -24,7 +22,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             --secondary: #33ff00; 
         }
 
-        /* PERFORMANCE : Utilisation de content-visibility pour accélérer le rendu */
         body {
             background-color: var(--bg);
             color: var(--primary);
@@ -36,7 +33,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             flex-direction: column;
         }
 
-        /* Optimisation du GPU pour l'animation de la grille */
         .grid-bg {
             position: fixed;
             top: -50%; left: -50%; width: 200%; height: 200%;
@@ -47,7 +43,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             z-index: -1;
             transform: perspective(500px) rotateX(60deg);
             animation: grid-move 40s linear infinite;
-            will-change: transform; /* Aide le navigateur à anticiper l'animation */
+            will-change: transform;
         }
 
         @keyframes grid-move {
@@ -67,7 +63,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         h1 { font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase; margin: 0; color: #fff; }
 
-        /* ACCESSIBILITÉ : Landmark Main pour le SEO et les lecteurs d'écran */
         main {
             flex-grow: 1;
             display: flex;
@@ -79,7 +74,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         .main-nav {
             display: flex;
-            gap: 10px;
+            gap: 15px;
             list-style: none;
             padding: 0;
             margin: 0;
@@ -119,6 +114,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             transform: rotate(180deg);
             color: #ffffff;
             text-shadow: 0 0 10px rgba(0,0,0,0.5);
+            transition: color 0.3s;
         }
 
         .char-card span {
@@ -129,11 +125,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             margin-bottom: 5px;
         }
 
-        /* SEO & ACCESSIBILITÉ : Contraste amélioré sur le hover */
         .char-card:hover {
-            transform: scale(1.03);
+            transform: scale(1.05);
             border-color: var(--secondary);
-            box-shadow: 0 0 20px rgba(51, 255, 0, 0.2);
+            box-shadow: 0 0 25px rgba(51, 255, 0, 0.3);
+        }
+
+        .char-card:hover h2 {
+            color: var(--secondary);
         }
 
         /* Attribution des images */
@@ -142,25 +141,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .card-alex { background-image: url('alex.png'); }
         .card-leroi { background-image: url('leroi.png'); }
         .card-elio { background-image: url('elio.png'); }
+        .card-kayden { background-image: url('kayden.png'); }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .main-nav {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
-                gap: 10px;
+                gap: 15px;
             }
             .char-card {
                 width: auto;
-                height: 220px;
+                height: 250px;
             }
             .char-card h2 {
                 writing-mode: horizontal-tb;
                 transform: none;
-                font-size: 1.3rem;
+                font-size: 1.5rem;
             }
         }
 
-        /* BEST PRACTICE : Footer pour les landmarks */
         footer {
             padding: 15px;
             text-align: center;
@@ -168,6 +167,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             font-size: 0.6rem;
             color: rgba(255,255,255,0.3);
             border-top: 1px solid rgba(255,255,255,0.05);
+            background: rgba(0,0,0,0.8);
         }
     </style>
 </head>
@@ -175,14 +175,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="grid-bg" aria-hidden="true"></div>
 
     <header role="banner">
-        <h1>M13 // MONITORING</h1>
+        <h1>M13 // MONITORING SYSTEM</h1>
         <div style="font-family: monospace; font-size: 0.7rem; color: var(--secondary);" aria-live="polite">
-            LIAISON_ÉTABLIE
+            LIAISON_ÉTABLIE // ACCÈS_NIVEAU_4
         </div>
     </header>
 
     <main>
         <nav class="main-nav" aria-label="Navigation des sujets">
+            <a href="/elio" class="char-card card-elio" aria-label="Dossier d'Elio">
+                <span>ID_00</span>
+                <h2>ELIO</h2>
+            </a>
             <a href="/darius" class="char-card card-darius" aria-label="Dossier de Darius">
                 <span>ID_01</span>
                 <h2>DARIUS</h2>
@@ -194,25 +198,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <a href="/alex" class="char-card card-alex" aria-label="Dossier d'Alex">
                 <span>ID_03</span>
                 <h2>ALEX</h2>
-            
             </a>
-            <a href="/elio" class="char-card card-elio" aria-label="Dossier d'Elio">
-                <span>ID_00</span>
-                <h2>ELIO</h2>
-          </a>
-            <a href="/LEROI" class="char-card card-leroi" aria-label="Dossier des Enfers">
-                <span>ID_XX</span>
+            <a href="/kayden" class="char-card card-kayden" aria-label="Dossier de Kayden">
+                <span>ID_04</span>
                 <h2>KAYDEN</h2>
+            </a>
+            <a href="/leroi" class="char-card card-leroi" aria-label="Dossier du Roi">
+                <span style="color: #ff0055;">ID_ERROR</span>
+                <h2 style="text-shadow: 0 0 10px #ff0055;">LE ROI</h2>
             </a>
         </nav>
     </main>
 
     <footer role="contentinfo">
-        <p>© 2026 PROJECT M13 - SYSTÈME DE GESTION DES SOUVENIRS RÉSIDUELS. TOUT EFFACEMENT EST DÉFINITIF.</p>
+        <p>© 2026 PROJECT M13 - SURVEILLANCE BIOMÉTRIQUE ET MÉMORIELLE. TOUTE INTERFERENCE SERA PUNIE.</p>
     </footer>
-</body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T29H3VJD"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T29H3VJD"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    </body>
 </html>
