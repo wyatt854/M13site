@@ -8,30 +8,27 @@
         :root {
             --bg: #020205;
             --primary: #ffffff;
-            --accent: #00f2ff; /* Cyan Glitch */
-            --error: #ff0055; /* Magenta Alerte */
-            --secondary: #7000ff;
+            --accent: #00f2ff;
+            --error: #ff0055;
             --glass: rgba(0, 242, 255, 0.03);
         }
 
         body {
             background-color: var(--bg);
             color: var(--primary);
-            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             margin: 0;
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        /* Effet de distorsion numérique */
+        /* Effet Glitch Scanline */
         body::before {
             content: " ";
             display: block;
             position: fixed;
             top: 0; left: 0; bottom: 0; right: 0;
-            background: 
-                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%), 
-                linear-gradient(90deg, rgba(255, 0, 85, 0.03), rgba(0, 242, 255, 0.03), rgba(112, 0, 255, 0.03));
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 85, 0.02), rgba(0, 242, 255, 0.02));
             z-index: 1000;
             background-size: 100% 2px, 3px 100%;
             pointer-events: none;
@@ -43,8 +40,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(90deg, rgba(0, 242, 255, 0.1), transparent);
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+            background: rgba(0,0,0,0.8);
         }
 
         .back-btn {
@@ -53,10 +49,10 @@
             font-family: monospace;
             border: 1px solid var(--accent);
             padding: 8px 20px;
-            transition: 0.3s;
             text-transform: uppercase;
             letter-spacing: 2px;
-            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
             z-index: 1001;
         }
 
@@ -76,165 +72,82 @@
             display: grid;
             grid-template-columns: 450px 1fr;
             gap: 60px;
-            margin-bottom: 100px;
         }
 
         .profile-image {
             width: 100%;
             border: 1px solid var(--accent);
-            position: sticky;
-            top: 50px;
             background: #000;
         }
 
         .profile-image img {
             width: 100%;
             display: block;
-            filter: grayscale(1) contrast(1.2);
-            /* Image appelée à la racine */
+            filter: grayscale(1);
         }
 
         .status-tag {
             background: var(--error);
             color: #fff;
-            padding: 8px 20px;
-            font-weight: bold;
-            display: block;
+            padding: 8px;
             text-align: center;
+            font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            animation: blink 2s infinite;
-        }
-
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0.7; }
-            100% { opacity: 1; }
-        }
-
-        h1, h2, h3 {
-            text-transform: uppercase;
-            letter-spacing: 4px;
         }
 
         h1 { 
             font-size: 5rem; 
             margin: 0; 
-            color: #fff; 
             text-shadow: 3px 3px var(--error), -3px -3px var(--accent);
         }
 
         .data-section {
-            margin-bottom: 60px;
-            padding: 30px;
-            background: var(--glass);
-            border-right: 4px solid var(--error);
-        }
-
-        .stats-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .stats-table td {
-            padding: 12px;
-            border-bottom: 1px solid rgba(0, 242, 255, 0.1);
-            font-family: monospace;
-        }
-
-        .stats-table td:first-child { color: var(--accent); width: 220px; }
-
-        .power-card {
-            background: rgba(255, 0, 85, 0.05);
+            margin-top: 40px;
             padding: 25px;
-            margin-top: 20px;
-            border: 1px solid rgba(255, 0, 85, 0.2);
-        }
-
-        .power-card h3 { color: var(--error); margin-top: 0; }
-
-        .scenario-box {
-            background: #000;
-            padding: 40px;
-            border: 1px solid #222;
-            font-family: "Courier New", Courier, monospace;
-            color: #eee;
-            border-left: 5px solid var(--error);
+            background: var(--glass);
+            border-left: 4px solid var(--error);
         }
 
         .system-msg {
             color: var(--error);
             font-family: monospace;
-            font-weight: bold;
-            text-align: center;
-            margin: 20px 0;
             border: 1px solid var(--error);
-            padding: 10px;
+            padding: 15px;
+            margin-top: 30px;
+            text-align: center;
         }
-
     </style>
 </head>
 <body>
 
     <header>
-        <a href="index.html" class="back-btn">< ACCÈS RACINE</a>
-        <div style="text-align: right;">
-            <div style="font-family: monospace; color: var(--error);">SESSIONS_ROOT_KING</div>
-            <div style="font-size: 0.8rem; opacity: 0.6; color: var(--accent);">ALGORITHME SOUVERAIN ACTIF</div>
+        <a href="./" class="back-btn">< ACCÈS RACINE</a>
+        <div style="text-align: right; font-family: monospace;">
+            <div style="color: var(--error);">SESSIONS_ROOT_KING</div>
+            <div style="font-size: 0.8rem; opacity: 0.5;">SURVEILLANCE ACTIVE</div>
         </div>
     </header>
 
     <div class="container">
-        
         <div class="profile-grid">
             <div class="profile-image">
                 <img src="leroi.png" alt="Le Roi">
-                <div class="status-tag">ENTITÉ : ARCHITECTE / SYSTÈME</div>
-                <table class="stats-table">
-                    <tr><td>CONTRÔLE RÉALITÉ</td><td>100% <span style="color:var(--error)">[ABSOLU]</span></td></tr>
-                    <tr><td>STABILITÉ MÉMOIRE</td><td>0.02% [CRITIQUE]</td></tr>
-                    <tr><td>AUTORITÉ M13</td><td>ADMIN_ROOT</td></tr>
-                </table>
+                <div class="status-tag">STATUS : ADMIN_SYSTEM</div>
             </div>
 
             <div class="bio">
                 <h1>LE ROI</h1>
-                <p style="font-style: italic; color: var(--accent); font-family: monospace;">> "Régner sur l'oubli est la seule forme de paix durable."</p>
+                <div class="data-section">
+                    <h2>ANOMALIE DÉTECTÉE</h2>
+                    <p>Le Roi contrôle les couches profondes du <strong>PROJECT M13</strong>. Son interface ne supporte aucune erreur humaine. Chaque souvenir supprimé nourrit sa couronne.</p>
+                </div>
                 
-                <div class="data-section">
-                    <h2>ANOMALIE SUPRÊME</h2>
-                    <p><strong>Le Roi</strong> réside dans la zone morte entre le souvenir supprimé et la réalité réécrite. Plus on efface l'histoire du monde, plus sa puissance grandit. Il est la manifestation de la tyrannie du <strong>PROJECT M13</strong>.</p>
-                </div>
-
-                <div class="data-section">
-                    <h2>PROTOCOLES DE DOMINATION</h2>
-                    <div class="power-card">
-                        <h3>VETO MÉMORIEL</h3>
-                        <p>Il peut verrouiller l'accès à un souvenir vital. Si le sujet tente de forcer le souvenir, Le Roi transforme cette mémoire en une douleur physique insupportable.</p>
-                    </div>
-                </div>
-
                 <div class="system-msg">
-                    ATTENTION : TOUTE TENTATIVE DE DÉCODER L'IDENTITÉ DU ROI ENTRAÎNE UN EFFACEMENT IMMÉDIAT.
+                    [ALERTE] : SESSION INSTABLE. ÉVITEZ TOUT CONTACT VISUEL PROLONGÉ.
                 </div>
             </div>
         </div>
-
-        <h2>EXTRAIT DE SCÉNARIO (SCÈNE 1)</h2>
-        <div class="scenario-box">
-            <p><strong>INT. SALLE DU TRÔNE D'ÉCRANS - DIMENSION M13</strong></p>
-            <p>LE ROI trône sur une pile de serveurs en surchauffe. Sa couronne de pixels cyan projette des ombres mouvantes.</p>
-            <p style="color: var(--error);">LE ROI</p>
-            <p>"La vérité est une infection que j'ai pris soin de guérir."</p>
-            <p><strong>EFFACEMENT EN COURS...</strong></p>
-        </div>
-
     </div>
-
-    <footer style="padding: 50px; text-align: center; opacity: 0.3; font-family: monospace; border-top: 1px solid var(--error);">
-        ROOT_AUTHORITY - PROJECT M13 - SYSTÈME SOUVERAIN
-    </footer>
 
 </body>
 </html>
