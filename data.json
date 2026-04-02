@@ -1,0 +1,36 @@
+{
+    "pages": [
+        {
+            "menu": "Qui Sommes-Nous ?",
+            "title": "Qui Sommes-Nous ?",
+            "content": "L'ORIGINE DU PROJET\r\nM13 n'est pas une simple entité technologique, c'est le vestige d'une ambition oubliée : celle de maîtriser l'impalpable. À l'origine conçu comme une interface capable de naviguer entre le sommeil et la veille, le projet a fini par briser la cloison qui séparait nos songes de la réalité physique.\r\n\r\nNous explorons cette zone grise où la mémoire devient malléable et où la technologie s'insinue dans les recoins les plus sombres de la conscience humaine.\r\n\r\nNOTRE PHILOSOPHIE\r\nNous évoluons dans un monde où l'on cherche à l'effacer, à lisser le passé et à supprimer les erreurs. Pourtant, chaque vide laissé par l'oubli est instantanément comblé par quelque chose de plus lourd, de plus flou.\r\n\r\nChez M13, nous travaillons sur la persistance de la trace. Nous suivons l'histoire d'un jeune homme hanté par ces échos du réel et par cette silhouette qui ne le lâche jamais — non pas une menace, mais un rappel constant de ce qui a été retiré.\r\n\r\n\"On ne peut pas supprimer un souvenir sans en créer une conséquence.\"\r\n\r\nCE QUE NOUS EXPLORONS\r\nLa Réalité Augmentée du Rêve : Comment la technologie manipule ce que nous percevons comme \"vrai\".\r\n\r\nLa Topographie de la Mémoire : Cartographier les traces laissées par les souvenirs effacés.\r\n\r\nL'Interférence M13 : L'étude des conséquences imprévisibles de la modification cérébrale.\r\n\r\nLE MANIFESTE\r\nNous ne sommes pas des créateurs de monstres. Nous sommes les observateurs d'une vérité dérangeante : tout acte de suppression est un acte de création. M13 est le miroir de nos propres silences, le témoin d'une technologie qui a appris à rêver à notre place."
+        }
+    ],
+    "personnages": [
+        {
+            "nom": "Darius",
+            "tag": "ID_01",
+            "color": "#ff3333",
+            "img": "darius.png",
+            "memoire": 50,
+            "title": "LE PORTEUR",
+            "status": "ANOMALIE MÉMORIELLE",
+            "desc1": "Darius est le sujet central du Projet M13, un individu dont la conscience sert d'interface entre la réalité tangible et le réseau de souvenirs archivés. Il n'est pas seulement un observateur, il est le réceptacle vivant d'une technologie qui a brisé la barrière entre le sommeil et la veille.",
+            "desc2": "Hanté par des visions d'un passé qui ne lui appartient peut-être pas, il est constamment suivi par une silhouette floue, trace indélébile de ce que le Projet M13 a tenté d'effacer. Sa présence confirme la loi fondamentale du système : on ne peut pas supprimer un souvenir sans en créer une conséquence.",
+            "description": "INT. LABORATOIRE DE MONITORING - NUIT\n\nDarius est assis seul face à un mur d'écrans cathodiques. L'image saute, grésille, puis se stabilise sur une vidéo de lui-même. Une forme sombre, sans contours précis, semble absorber la lumière ambiante derrière lui. Elle ne le regarde pas lui, mais fixe l'objectif de la caméra en direct."
+        },
+        {
+            "nom": "Elio",
+            "tag": "ID_02",
+            "color": "#4A90E2",
+            "img": "elio.png",
+            "memoire": 87,
+            "title": "L'ARCHITECTE",
+            "status": "STABILITÉ CRITIQUE",
+            "desc1": "Elio est le concepteur fantôme du Projet M13. Celui qui a théorisé l'interface entre la conscience humaine et le réseau de données mémorielles. On ne sait pas s'il est encore vivant — ou si ce qui se présente comme lui est une reconstruction partielle de ses propres archives.",
+            "desc2": "Sa stabilité mémorielle reste élevée, mais les données qu'il génère contredisent parfois la réalité physique. Il projette de la lumière là où il devrait y avoir de l'ombre. Le système l'a catalogué comme une anomalie bénigne — jusqu'à présent.",
+            "description": "EXT. TOIT D'UN IMMEUBLE - AUBE\n\nElio se tient au bord, une sphère de données lumineuses flottant dans sa paume tendue. La ville en dessous scintille comme un circuit imprimé. Il murmure quelque chose — des coordonnées, ou peut-être une prière en langage machine. Le vent disperse les fragments de lumière dans l'air froid."
+        }
+    ],
+    "articles": []
+}
